@@ -1,0 +1,305 @@
+{
+	"topWindow": {
+		"path": "windows/page_header.vue",
+		"style": {
+			"height": "60px"
+		},
+		"matchMedia": {
+			"minWidth": 1200 //生效条件，当窗口宽度大于768px时显示
+		}
+	},
+	"pages": [{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "首页"
+			}
+		},
+		{
+			"path" : "pages/webview/webview",
+			"style" :
+			{
+				"navigationBarTitleText": "网址跳转"
+			}
+		},
+		{
+			"path": "pages/comment/edit",
+			"style": {
+				"navigationBarTitleText": "评论"
+			}
+		},
+		{
+			"path": "pages/media/music",
+			"style": {
+				"navigationBarTitleText": "音乐",
+				"backgroundColor": "#000000"
+			}
+		}, {
+			"path": "pages/media/image",
+			"style": {
+				"navigationBarTitleText": "图片预览",
+				"backgroundColor": "#000000"
+			}
+		}, {
+			"path": "pages/media/video",
+			"style": {
+				"navigationBarTitleText": "视频",
+				"backgroundColor": "#000000"
+			}
+		}, {
+			"path": "pages/account/forgot",
+			"style": {
+				"navigationBarTitleText": "找回密码"
+			}
+		}, {
+			"path": "pages/account/login",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		},
+		{
+			"path": "pages/account/register",
+			"style": {
+				"navigationBarTitleText": "注册"
+			}
+		},
+		{
+			"path": "pages/goods/list",
+			"style": {
+				"navigationBarTitleText": "产品展示"
+			}
+		}, {
+			"path": "pages/goods/details",
+			"style": {
+				"navigationBarTitleText": "产品详情"
+			}
+		}, {
+			"path": "pages/cart/index",
+			"style": {
+				"navigationBarTitleText": "购物车"
+			}
+		}, {
+			"path": "pages/cart/list",
+			"style": {
+				"navigationBarTitleText": "购物车"
+			}
+		}, {
+			"path": "pages/order/index",
+			"style": {
+				"navigationBarTitleText": "我的订单"
+			}
+		}, {
+			"path": "pages/order/list",
+			"style": {
+				"navigationBarTitleText": "我的订单"
+			}
+		}, {
+			"path": "pages/order/details",
+			"style": {
+				"navigationBarTitleText": "订单详情"
+			}
+		}, {
+			"path": "pages/pay/index",
+			"style": {
+				"navigationBarTitleText": "支付"
+			}
+		},
+		{
+			"path": "pages/user/address",
+			"style": {
+				"navigationBarTitleText": "收货地址"
+			}
+		}, {
+			"path": "pages/user/address_edit",
+			"style": {
+				"navigationBarTitleText": "收货地址管理"
+			}
+		},
+		{
+			"path": "pages/notice/list",
+			"style": {
+				"navigationBarTitleText": "公告信息列表"
+			}
+		},
+		{
+			"path": "pages/notice/details",
+			"style": {
+				"navigationBarTitleText": "公告信息"
+			}
+		},
+							// 食物信息列表路由
+		{
+			"path": "pages/food_information/list",
+			"style": {
+				"navigationBarTitleText": "食物信息列表"
+			}
+		},
+				// 食物信息详情路由
+		{
+			"path": "pages/food_information/details",
+			"style": {
+				"navigationBarTitleText": "食物信息"
+			}
+		},
+								// 房间信息列表路由
+		{
+			"path": "pages/room_information/list",
+			"style": {
+				"navigationBarTitleText": "房间信息列表"
+			}
+		},
+				// 房间信息详情路由
+		{
+			"path": "pages/room_information/details",
+			"style": {
+				"navigationBarTitleText": "房间信息"
+			}
+		},
+				// 房间订单编辑路由
+		{
+			"path": "pages/room_orders/edit",
+			"style": {
+				"navigationBarTitleText": "房间订单"
+			}
+		},
+									// 顾客用户列表路由
+		{
+			"path": "pages/customer_users/table",
+			"style": {
+				"navigationBarTitleText": "顾客用户列表"
+			}
+		},
+		// 顾客用户编辑路由
+		{
+			"path": "pages/customer_users/view",
+			"style": {
+				"navigationBarTitleText": "顾客用户详情"
+			}
+		},
+					// 食物订单列表路由
+		{
+			"path": "pages/food_orders/table",
+			"style": {
+				"navigationBarTitleText": "食物订单列表"
+			}
+		},
+		// 食物订单编辑路由
+		{
+			"path": "pages/food_orders/view",
+			"style": {
+				"navigationBarTitleText": "食物订单详情"
+			}
+		},
+				// 房间信息列表路由
+		{
+			"path": "pages/room_information/table",
+			"style": {
+				"navigationBarTitleText": "房间信息列表"
+			}
+		},
+		// 房间信息编辑路由
+		{
+			"path": "pages/room_information/view",
+			"style": {
+				"navigationBarTitleText": "房间信息详情"
+			}
+		},
+				// 房间订单列表路由
+		{
+			"path": "pages/room_orders/table",
+			"style": {
+				"navigationBarTitleText": "房间订单列表"
+			}
+		},
+		// 房间订单编辑路由
+		{
+			"path": "pages/room_orders/view",
+			"style": {
+				"navigationBarTitleText": "房间订单详情"
+			}
+		},
+				// 房型管理列表路由
+		{
+			"path": "pages/room_type_management/table",
+			"style": {
+				"navigationBarTitleText": "房型管理列表"
+			}
+		},
+		// 房型管理编辑路由
+		{
+			"path": "pages/room_type_management/view",
+			"style": {
+				"navigationBarTitleText": "房型管理详情"
+			}
+		},
+			{
+			"path": "pages/user/collect",
+			"style": {
+				"navigationBarTitleText": "我的收藏"
+			}
+		},
+		{
+			"path": "pages/user/index",
+			"style": {
+				"navigationBarTitleText": "我"
+			}
+		}, {
+			"path": "pages/user/password",
+			"style": {
+				"navigationBarTitleText": "修改密码"
+			}
+		}, {
+			"path": "pages/user/info",
+			"style": {
+				"navigationBarTitleText": "基本信息"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "长盛",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"app-plus": {
+			"background": "#efeff4"
+		}
+	},
+	"tabBar": {
+		"color": "#8a8a8a",
+		"selectedColor": "#3388FF",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+				"pagePath": "pages/index/index",
+				"text": "首页",
+				"iconPath": "static/img/home_a.png",
+				"selectedIconPath": "static/img/home_b.png"
+			},
+			{
+				"pagePath": "pages/cart/index",
+				"text": "购物车",
+				"iconPath": "static/img/cart_a.png",
+				"selectedIconPath": "static/img/cart_b.png"
+			},
+			{
+				"pagePath": "pages/user/index",
+				"text": "我的",
+				"iconPath": "static/img/my_a.png",
+				"selectedIconPath": "static/img/my_b.png"
+			}
+		]
+	},
+	"condition": { //模式配置，仅开发期间生效
+		"current": 0, //当前激活的模式(list 的索引项)
+		"list": [{
+			"name": "", //模式名称
+			"path": "", //启动页面，必选
+			"query": "" //启动参数，在页面的onLoad函数里面得到
+		}]
+	},
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			"^mm_(.*)": "@/components/mm_vue_ui/base/mm_$1.vue"
+		}
+	}
+}

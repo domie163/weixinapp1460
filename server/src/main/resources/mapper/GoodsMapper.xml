@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.demo.dao.GoodsMapper">
+
+    <resultMap type="com.project.demo.entity.Goods" id="GoodsResult">
+        <result property="goodsId"    column="goods_id"    />
+        <result property="title"    column="title"    />
+        <result property="img"    column="img"    />
+        <result property="description"    column="description"    />
+        <result property="priceAgo"    column="price_ago"    />
+        <result property="price"    column="price"    />
+        <result property="sales"    column="sales"    />
+        <result property="inventory"    column="inventory"    />
+        <result property="type"    column="type"    />
+        <result property="hits"    column="hits"    />
+        <result property="content"    column="content"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="img1"    column="img_1"    />
+        <result property="img2"    column="img_2"    />
+        <result property="img3"    column="img_3"    />
+        <result property="img4"    column="img_4"    />
+        <result property="img5"    column="img_5"    />
+        <result property="sourceTable"    column="source_table"    />
+        <result property="sourceField"    column="source_field"    />
+        <result property="sourceId"    column="source_id"    />
+    </resultMap>
+
+    <sql id="selectGoodsVo">
+        select goods_id, title, img, description, price_ago, price, sales, inventory, type, hits, content, create_time, update_time, img_1, img_2, img_3, img_4, img_5, source_table, source_field, source_id from goods
+    </sql>
+
+    <select id="selectGoodsList" parameterType="com.project.demo.entity.Goods" resultMap="GoodsResult">
+        <include refid="selectGoodsVo"/>
+        <where>
+            <if test="title != null  and title != ''"> and title = #{title}</if>
+            <if test="img != null  and img != ''"> and img = #{img}</if>
+            <if test="description != null  and description != ''"> and description = #{description}</if>
+            <if test="priceAgo != null "> and price_ago = #{priceAgo}</if>
+            <if test="price != null "> and price = #{price}</if>
+            <if test="sales != null "> and sales = #{sales}</if>
+            <if test="inventory != null "> and inventory = #{inventory}</if>
+            <if test="type != null  and type != ''"> and type = #{type}</if>
+            <if test="hits != null "> and hits = #{hits}</if>
+            <if test="content != null  and content != ''"> and content = #{content}</if>
+            <if test="img1 != null  and img1 != ''"> and img_1 = #{img1}</if>
+            <if test="img2 != null  and img2 != ''"> and img_2 = #{img2}</if>
+            <if test="img3 != null  and img3 != ''"> and img_3 = #{img3}</if>
+            <if test="img4 != null  and img4 != ''"> and img_4 = #{img4}</if>
+            <if test="img5 != null  and img5 != ''"> and img_5 = #{img5}</if>
+            <if test="sourceTable != null  and sourceTable != ''"> and source_table = #{sourceTable}</if>
+            <if test="sourceField != null  and sourceField != ''"> and source_field = #{sourceField}</if>
+            <if test="sourceId != null "> and source_id = #{sourceId}</if>
+        </where>
+    </select>
+
+    <select id="selectGoodsById" parameterType="Integer" resultMap="GoodsResult">
+        <include refid="selectGoodsVo"/>
+        where goods_id = #{goodsId}
+    </select>
+
+    <insert id="insertGoods" parameterType="com.project.demo.entity.Goods" useGeneratedKeys="true" keyProperty="goodsId">
+        insert into goods
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null  and title != ''">title,</if>
+            <if test="img != null  and img != ''">img,</if>
+            <if test="description != null  and description != ''">description,</if>
+            <if test="priceAgo != null ">price_ago,</if>
+            <if test="price != null ">price,</if>
+            <if test="sales != null ">sales,</if>
+            <if test="inventory != null ">inventory,</if>
+            <if test="type != null  and type != ''">type,</if>
+            <if test="hits != null ">hits,</if>
+            <if test="content != null  and content != ''">content,</if>
+            <if test="createTime != null ">create_time,</if>
+            <if test="updateTime != null ">update_time,</if>
+            <if test="img1 != null  and img1 != ''">img_1,</if>
+            <if test="img2 != null  and img2 != ''">img_2,</if>
+            <if test="img3 != null  and img3 != ''">img_3,</if>
+            <if test="img4 != null  and img4 != ''">img_4,</if>
+            <if test="img5 != null  and img5 != ''">img_5,</if>
+            <if test="sourceTable != null  and sourceTable != ''">source_table,</if>
+            <if test="sourceField != null  and sourceField != ''">source_field,</if>
+            <if test="sourceId != null ">source_id,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="title != null  and title != ''">#{title},</if>
+            <if test="img != null  and img != ''">#{img},</if>
+            <if test="description != null  and description != ''">#{description},</if>
+            <if test="priceAgo != null ">#{priceAgo},</if>
+            <if test="price != null ">#{price},</if>
+            <if test="sales != null ">#{sales},</if>
+            <if test="inventory != null ">#{inventory},</if>
+            <if test="type != null  and type != ''">#{type},</if>
+            <if test="hits != null ">#{hits},</if>
+            <if test="content != null  and content != ''">#{content},</if>
+            <if test="createTime != null ">#{createTime},</if>
+            <if test="updateTime != null ">#{updateTime},</if>
+            <if test="img1 != null  and img1 != ''">#{img1},</if>
+            <if test="img2 != null  and img2 != ''">#{img2},</if>
+            <if test="img3 != null  and img3 != ''">#{img3},</if>
+            <if test="img4 != null  and img4 != ''">#{img4},</if>
+            <if test="img5 != null  and img5 != ''">#{img5},</if>
+            <if test="sourceTable != null  and sourceTable != ''">#{sourceTable},</if>
+            <if test="sourceField != null  and sourceField != ''">#{sourceField},</if>
+            <if test="sourceId != null ">#{sourceId},</if>
+         </trim>
+    </insert>
+
+    <update id="updateGoods" parameterType="com.project.demo.entity.Goods">
+        update goods
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="title != null  and title != ''">title = #{title},</if>
+            <if test="img != null  and img != ''">img = #{img},</if>
+            <if test="description != null  and description != ''">description = #{description},</if>
+            <if test="priceAgo != null ">price_ago = #{priceAgo},</if>
+            <if test="price != null ">price = #{price},</if>
+            <if test="sales != null ">sales = #{sales},</if>
+            <if test="inventory != null ">inventory = #{inventory},</if>
+            <if test="type != null  and type != ''">type = #{type},</if>
+            <if test="hits != null ">hits = #{hits},</if>
+            <if test="content != null  and content != ''">content = #{content},</if>
+            <if test="createTime != null ">create_time = #{createTime},</if>
+            <if test="updateTime != null ">update_time = #{updateTime},</if>
+            <if test="img1 != null  and img1 != ''">img_1 = #{img1},</if>
+            <if test="img2 != null  and img2 != ''">img_2 = #{img2},</if>
+            <if test="img3 != null  and img3 != ''">img_3 = #{img3},</if>
+            <if test="img4 != null  and img4 != ''">img_4 = #{img4},</if>
+            <if test="img5 != null  and img5 != ''">img_5 = #{img5},</if>
+            <if test="sourceTable != null  and sourceTable != ''">source_table = #{sourceTable},</if>
+            <if test="sourceField != null  and sourceField != ''">source_field = #{sourceField},</if>
+            <if test="sourceId != null ">source_id = #{sourceId},</if>
+        </trim>
+        where goods_id = #{goodsId}
+    </update>
+
+    <delete id="deleteGoodsById" parameterType="Integer">
+        delete from goods where goods_id = #{goodsId}
+    </delete>
+
+    <delete id="deleteGoodsByIds" parameterType="String">
+        delete from goods where goods_id in
+        <foreach item="goodsId" collection="array" open="(" separator="," close=")">
+            #{goodsId}
+        </foreach>
+    </delete>
+
+</mapper>

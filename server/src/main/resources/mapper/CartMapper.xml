@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.demo.dao.CartMapper">
+
+    <resultMap type="com.project.demo.entity.Cart" id="CartResult">
+        <result property="cartId"    column="cart_id"    />
+        <result property="title"    column="title"    />
+        <result property="img"    column="img"    />
+        <result property="userId"    column="user_id"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="state"    column="state"    />
+        <result property="price"    column="price"    />
+        <result property="priceAgo"    column="price_ago"    />
+        <result property="priceCount"    column="price_count"    />
+        <result property="num"    column="num"    />
+        <result property="goodsId"    column="goods_id"    />
+        <result property="type"    column="type"    />
+        <result property="description"    column="description"    />
+    </resultMap>
+
+    <sql id="selectCartVo">
+        select cart_id, title, img, user_id, create_time, update_time, state, price, price_ago, price_count, num, goods_id, type, description from cart
+    </sql>
+
+    <select id="selectCartList" parameterType="com.project.demo.entity.Cart" resultMap="CartResult">
+        <include refid="selectCartVo"/>
+        <where>
+            <if test="title != null  and title != ''"> and title = #{title}</if>
+            <if test="img != null  and img != ''"> and img = #{img}</if>
+            <if test="userId != null "> and user_id = #{userId}</if>
+            <if test="state != null "> and state = #{state}</if>
+            <if test="price != null "> and price = #{price}</if>
+            <if test="priceAgo != null "> and price_ago = #{priceAgo}</if>
+            <if test="priceCount != null "> and price_count = #{priceCount}</if>
+            <if test="num != null "> and num = #{num}</if>
+            <if test="goodsId != null "> and goods_id = #{goodsId}</if>
+            <if test="type != null  and type != ''"> and type = #{type}</if>
+            <if test="description != null  and description != ''"> and description = #{description}</if>
+        </where>
+    </select>
+
+    <select id="selectCartById" parameterType="Long" resultMap="CartResult">
+        <include refid="selectCartVo"/>
+        where cart_id = #{cartId}
+    </select>
+
+    <insert id="insertCart" parameterType="com.project.demo.entity.Cart" useGeneratedKeys="true" keyProperty="cartId">
+        insert into cart
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null  and title != ''">title,</if>
+            <if test="img != null  and img != ''">img,</if>
+            <if test="userId != null ">user_id,</if>
+            <if test="createTime != null ">create_time,</if>
+            <if test="updateTime != null ">update_time,</if>
+            <if test="state != null ">state,</if>
+            <if test="price != null ">price,</if>
+            <if test="priceAgo != null ">price_ago,</if>
+            <if test="priceCount != null ">price_count,</if>
+            <if test="num != null ">num,</if>
+            <if test="goodsId != null ">goods_id,</if>
+            <if test="type != null  and type != ''">type,</if>
+            <if test="description != null  and description != ''">description,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="title != null  and title != ''">#{title},</if>
+            <if test="img != null  and img != ''">#{img},</if>
+            <if test="userId != null ">#{userId},</if>
+            <if test="createTime != null ">#{createTime},</if>
+            <if test="updateTime != null ">#{updateTime},</if>
+            <if test="state != null ">#{state},</if>
+            <if test="price != null ">#{price},</if>
+            <if test="priceAgo != null ">#{priceAgo},</if>
+            <if test="priceCount != null ">#{priceCount},</if>
+            <if test="num != null ">#{num},</if>
+            <if test="goodsId != null ">#{goodsId},</if>
+            <if test="type != null  and type != ''">#{type},</if>
+            <if test="description != null  and description != ''">#{description},</if>
+         </trim>
+    </insert>
+
+    <update id="updateCart" parameterType="com.project.demo.entity.Cart">
+        update cart
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="title != null  and title != ''">title = #{title},</if>
+            <if test="img != null  and img != ''">img = #{img},</if>
+            <if test="userId != null ">user_id = #{userId},</if>
+            <if test="createTime != null ">create_time = #{createTime},</if>
+            <if test="updateTime != null ">update_time = #{updateTime},</if>
+            <if test="state != null ">state = #{state},</if>
+            <if test="price != null ">price = #{price},</if>
+            <if test="priceAgo != null ">price_ago = #{priceAgo},</if>
+            <if test="priceCount != null ">price_count = #{priceCount},</if>
+            <if test="num != null ">num = #{num},</if>
+            <if test="goodsId != null ">goods_id = #{goodsId},</if>
+            <if test="type != null  and type != ''">type = #{type},</if>
+            <if test="description != null  and description != ''">description = #{description},</if>
+        </trim>
+        where cart_id = #{cartId}
+    </update>
+
+    <delete id="deleteCartById" parameterType="Long">
+        delete from cart where cart_id = #{cartId}
+    </delete>
+
+    <delete id="deleteCartByIds" parameterType="String">
+        delete from cart where cart_id in
+        <foreach item="cartId" collection="array" open="(" separator="," close=")">
+            #{cartId}
+        </foreach>
+    </delete>
+
+</mapper>

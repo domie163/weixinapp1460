@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.demo.dao.AddressMapper">
+
+    <resultMap type="com.project.demo.entity.Address" id="AddressResult">
+        <result property="addressId"    column="address_id"    />
+        <result property="name"    column="name"    />
+        <result property="phone"    column="phone"    />
+        <result property="postcode"    column="postcode"    />
+        <result property="address"    column="address"    />
+        <result property="userId"    column="user_id"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectAddressVo">
+        select address_id, name, phone, postcode, address, user_id, create_time, update_time, default from address
+    </sql>
+
+    <select id="selectAddressList" parameterType="com.project.demo.entity.Address" resultMap="AddressResult">
+        <include refid="selectAddressVo"/>
+        <where>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="phone != null  and phone != ''"> and phone = #{phone}</if>
+            <if test="postcode != null  and postcode != ''"> and postcode = #{postcode}</if>
+            <if test="address != null  and address != ''"> and address = #{address}</if>
+            <if test="userId != null "> and user_id = #{userId}</if>
+            <if test="default != null "> and default = #{default}</if>
+        </where>
+    </select>
+
+    <select id="selectAddressById" parameterType="Long" resultMap="AddressResult">
+        <include refid="selectAddressVo"/>
+        where address_id = #{addressId}
+    </select>
+
+    <insert id="insertAddress" parameterType="com.project.demo.entity.Address" useGeneratedKeys="true" keyProperty="addressId">
+        insert into address
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null  and name != ''">name,</if>
+            <if test="phone != null  and phone != ''">phone,</if>
+            <if test="postcode != null  and postcode != ''">postcode,</if>
+            <if test="address != null  and address != ''">address,</if>
+            <if test="userId != null ">user_id,</if>
+            <if test="createTime != null ">create_time,</if>
+            <if test="updateTime != null ">update_time,</if>
+            <if test="default != null ">default,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null  and name != ''">#{name},</if>
+            <if test="phone != null  and phone != ''">#{phone},</if>
+            <if test="postcode != null  and postcode != ''">#{postcode},</if>
+            <if test="address != null  and address != ''">#{address},</if>
+            <if test="userId != null ">#{userId},</if>
+            <if test="createTime != null ">#{createTime},</if>
+            <if test="updateTime != null ">#{updateTime},</if>
+            <if test="default != null ">#{default},</if>
+         </trim>
+    </insert>
+
+    <update id="updateAddress" parameterType="com.project.demo.entity.Address">
+        update address
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null  and name != ''">name = #{name},</if>
+            <if test="phone != null  and phone != ''">phone = #{phone},</if>
+            <if test="postcode != null  and postcode != ''">postcode = #{postcode},</if>
+            <if test="address != null  and address != ''">address = #{address},</if>
+            <if test="userId != null ">user_id = #{userId},</if>
+            <if test="createTime != null ">create_time = #{createTime},</if>
+            <if test="updateTime != null ">update_time = #{updateTime},</if>
+            <if test="default != null ">default = #{default},</if>
+        </trim>
+        where address_id = #{addressId}
+    </update>
+
+    <delete id="deleteAddressById" parameterType="Long">
+        delete from address where address_id = #{addressId}
+    </delete>
+
+    <delete id="deleteAddressByIds" parameterType="String">
+        delete from address where address_id in
+        <foreach item="addressId" collection="array" open="(" separator="," close=")">
+            #{addressId}
+        </foreach>
+    </delete>
+
+</mapper>

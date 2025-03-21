@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.demo.dao.OrderMapper">
+
+    <resultMap type="com.project.demo.entity.Order" id="OrderResult">
+        <result property="orderId"    column="order_id"    />
+        <result property="orderNumber"    column="order_number"    />
+        <result property="goodsId"    column="goods_id"    />
+        <result property="title"    column="title"    />
+        <result property="img"    column="img"    />
+        <result property="price"    column="price"    />
+        <result property="priceAgo"    column="price_ago"    />
+        <result property="num"    column="num"    />
+        <result property="priceCount"    column="price_count"    />
+        <result property="norms"    column="norms"    />
+        <result property="type"    column="type"    />
+        <result property="contactName"    column="contact_name"    />
+        <result property="contactEmail"    column="contact_email"    />
+        <result property="contactPhone"    column="contact_phone"    />
+        <result property="contactAddress"    column="contact_address"    />
+        <result property="postalCode"    column="postal_code"    />
+        <result property="userId"    column="user_id"    />
+        <result property="merchantId"    column="merchant_id"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="description"    column="description"    />
+        <result property="state"    column="state"    />
+    </resultMap>
+
+    <sql id="selectOrderVo">
+        select order_id, order_number, goods_id, title, img, price, price_ago, num, price_count, norms, type, contact_name, contact_email, contact_phone, contact_address, postal_code, user_id, merchant_id, create_time, update_time, description, state from order
+    </sql>
+
+    <select id="selectOrderList" parameterType="com.project.demo.entity.Order" resultMap="OrderResult">
+        <include refid="selectOrderVo"/>
+        <where>
+            <if test="orderNumber != null  and orderNumber != ''"> and order_number = #{orderNumber}</if>
+            <if test="goodsId != null "> and goods_id = #{goodsId}</if>
+            <if test="title != null  and title != ''"> and title = #{title}</if>
+            <if test="img != null  and img != ''"> and img = #{img}</if>
+            <if test="price != null "> and price = #{price}</if>
+            <if test="priceAgo != null "> and price_ago = #{priceAgo}</if>
+            <if test="num != null "> and num = #{num}</if>
+            <if test="priceCount != null "> and price_count = #{priceCount}</if>
+            <if test="norms != null  and norms != ''"> and norms = #{norms}</if>
+            <if test="type != null  and type != ''"> and type = #{type}</if>
+            <if test="contactName != null  and contactName != ''"> and contact_name like concat('%', #{contactName}, '%')</if>
+            <if test="contactEmail != null  and contactEmail != ''"> and contact_email = #{contactEmail}</if>
+            <if test="contactPhone != null  and contactPhone != ''"> and contact_phone = #{contactPhone}</if>
+            <if test="contactAddress != null  and contactAddress != ''"> and contact_address = #{contactAddress}</if>
+            <if test="postalCode != null  and postalCode != ''"> and postal_code = #{postalCode}</if>
+            <if test="userId != null "> and user_id = #{userId}</if>
+            <if test="merchantId != null "> and merchant_id = #{merchantId}</if>
+            <if test="description != null  and description != ''"> and description = #{description}</if>
+            <if test="state != null  and state != ''"> and state = #{state}</if>
+        </where>
+    </select>
+
+    <select id="selectOrderById" parameterType="Long" resultMap="OrderResult">
+        <include refid="selectOrderVo"/>
+        where order_id = #{orderId}
+    </select>
+
+    <insert id="insertOrder" parameterType="com.project.demo.entity.Order" useGeneratedKeys="true" keyProperty="orderId">
+        insert into order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderNumber != null  and orderNumber != ''">order_number,</if>
+            <if test="goodsId != null ">goods_id,</if>
+            <if test="title != null  and title != ''">title,</if>
+            <if test="img != null  and img != ''">img,</if>
+            <if test="price != null ">price,</if>
+            <if test="priceAgo != null ">price_ago,</if>
+            <if test="num != null ">num,</if>
+            <if test="priceCount != null ">price_count,</if>
+            <if test="norms != null  and norms != ''">norms,</if>
+            <if test="type != null  and type != ''">type,</if>
+            <if test="contactName != null  and contactName != ''">contact_name,</if>
+            <if test="contactEmail != null  and contactEmail != ''">contact_email,</if>
+            <if test="contactPhone != null  and contactPhone != ''">contact_phone,</if>
+            <if test="contactAddress != null  and contactAddress != ''">contact_address,</if>
+            <if test="postalCode != null  and postalCode != ''">postal_code,</if>
+            <if test="userId != null ">user_id,</if>
+            <if test="merchantId != null ">merchant_id,</if>
+            <if test="createTime != null ">create_time,</if>
+            <if test="updateTime != null ">update_time,</if>
+            <if test="description != null  and description != ''">description,</if>
+            <if test="state != null  and state != ''">state,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderNumber != null  and orderNumber != ''">#{orderNumber},</if>
+            <if test="goodsId != null ">#{goodsId},</if>
+            <if test="title != null  and title != ''">#{title},</if>
+            <if test="img != null  and img != ''">#{img},</if>
+            <if test="price != null ">#{price},</if>
+            <if test="priceAgo != null ">#{priceAgo},</if>
+            <if test="num != null ">#{num},</if>
+            <if test="priceCount != null ">#{priceCount},</if>
+            <if test="norms != null  and norms != ''">#{norms},</if>
+            <if test="type != null  and type != ''">#{type},</if>
+            <if test="contactName != null  and contactName != ''">#{contactName},</if>
+            <if test="contactEmail != null  and contactEmail != ''">#{contactEmail},</if>
+            <if test="contactPhone != null  and contactPhone != ''">#{contactPhone},</if>
+            <if test="contactAddress != null  and contactAddress != ''">#{contactAddress},</if>
+            <if test="postalCode != null  and postalCode != ''">#{postalCode},</if>
+            <if test="userId != null ">#{userId},</if>
+            <if test="merchantId != null ">#{merchantId},</if>
+            <if test="createTime != null ">#{createTime},</if>
+            <if test="updateTime != null ">#{updateTime},</if>
+            <if test="description != null  and description != ''">#{description},</if>
+            <if test="state != null  and state != ''">#{state},</if>
+         </trim>
+    </insert>
+
+    <update id="updateOrder" parameterType="com.project.demo.entity.Order">
+        update order
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="orderNumber != null  and orderNumber != ''">order_number = #{orderNumber},</if>
+            <if test="goodsId != null ">goods_id = #{goodsId},</if>
+            <if test="title != null  and title != ''">title = #{title},</if>
+            <if test="img != null  and img != ''">img = #{img},</if>
+            <if test="price != null ">price = #{price},</if>
+            <if test="priceAgo != null ">price_ago = #{priceAgo},</if>
+            <if test="num != null ">num = #{num},</if>
+            <if test="priceCount != null ">price_count = #{priceCount},</if>
+            <if test="norms != null  and norms != ''">norms = #{norms},</if>
+            <if test="type != null  and type != ''">type = #{type},</if>
+            <if test="contactName != null  and contactName != ''">contact_name = #{contactName},</if>
+            <if test="contactEmail != null  and contactEmail != ''">contact_email = #{contactEmail},</if>
+            <if test="contactPhone != null  and contactPhone != ''">contact_phone = #{contactPhone},</if>
+            <if test="contactAddress != null  and contactAddress != ''">contact_address = #{contactAddress},</if>
+            <if test="postalCode != null  and postalCode != ''">postal_code = #{postalCode},</if>
+            <if test="userId != null ">user_id = #{userId},</if>
+            <if test="merchantId != null ">merchant_id = #{merchantId},</if>
+            <if test="createTime != null ">create_time = #{createTime},</if>
+            <if test="updateTime != null ">update_time = #{updateTime},</if>
+            <if test="description != null  and description != ''">description = #{description},</if>
+            <if test="state != null  and state != ''">state = #{state},</if>
+        </trim>
+        where order_id = #{orderId}
+    </update>
+
+    <delete id="deleteOrderById" parameterType="Long">
+        delete from order where order_id = #{orderId}
+    </delete>
+
+    <delete id="deleteOrderByIds" parameterType="String">
+        delete from order where order_id in
+        <foreach item="orderId" collection="array" open="(" separator="," close=")">
+            #{orderId}
+        </foreach>
+    </delete>
+
+</mapper>
